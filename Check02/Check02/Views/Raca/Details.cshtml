@@ -1,0 +1,26 @@
+﻿@model Check02.Models.MdRaca
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MdRaca</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NmRaca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NmRaca)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRaca }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
