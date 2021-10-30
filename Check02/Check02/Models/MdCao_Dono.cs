@@ -20,7 +20,7 @@ namespace Check02.Models
         public int IdCao { get; set; }
 
         // ########## ID RAÇA ##########
-        public virtual int IdRaca { get; set; }
+        public int IdRaca { get; set; }
 
 
 

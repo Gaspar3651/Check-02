@@ -32,13 +32,14 @@ namespace Check02.Controllers
                 var BaseCao = db.ctCao.Where(t => t.IdCao == item.IdCao).FirstOrDefault();
                 var BaseDono = db.ctDonos.Where(t => t.IdDono == item.IdDono).FirstOrDefault();
 
+                item.IdRaca = BaseCao.IdRaca;
+
+                var BaseRaca = db.ctRacas.Where(t => t.IdRaca == item.IdRaca).FirstOrDefault();
 
                 item.NmDono = BaseDono.NmDono;
-
                 item.NmCao = BaseCao.NmCao;
-                item.NmRaca = BaseCao.NmRaca;
-                
-                item.IdRaca = BaseCao.IdRaca;
+                item.NmRaca = BaseRaca.NmRaca;
+                 
             }
 
 
@@ -58,10 +59,13 @@ namespace Check02.Controllers
                     var BaseCao = db.ctCao.Where(t => t.IdCao == item.IdCao).FirstOrDefault();
                     var BaseDono = db.ctDonos.Where(t => t.IdDono == item.IdDono).FirstOrDefault();
 
+                    item.IdRaca = BaseCao.IdRaca;
+
+                    var BaseRaca = db.ctRacas.Where(t => t.IdRaca == item.IdRaca).FirstOrDefault();
 
                     item.NmDono = BaseDono.NmDono;
                     item.NmCao = BaseCao.NmCao;
-                    item.NmRaca = BaseCao.NmRaca;
+                    item.NmRaca = BaseRaca.NmRaca;
                 }
                 return View(ListRaca);
             }

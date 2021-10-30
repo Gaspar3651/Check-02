@@ -40,9 +40,6 @@
         <th>
             @Html.DisplayNameFor(model => model.NmRaca)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdRaca)
-        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -56,9 +53,6 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.NmRaca)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.IdRaca)
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.IdCao_Dono }) |
