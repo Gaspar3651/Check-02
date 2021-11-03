@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Check02.Models.MdCao_Dono>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cães e Donos";
 }
 
-<h2>Index</h2>
+<h2>Cães e Donos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Relacionar cães aos seus donos", "Create")
 </p>
 
 @*<div class="form-group">
@@ -55,9 +55,9 @@
         @Html.DisplayFor(modelItem => item.NmRaca)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.IdCao_Dono }) |
-        @Html.ActionLink("Details", "Details", new { id = item.IdCao_Dono }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.IdCao_Dono })
+        @Html.ActionLink("Editar", "Edit", new { id = item.IdCao_Dono }) |
+        @Html.ActionLink("Detalhes", "Details", new { id = item.IdCao_Dono }) |
+        @Html.ActionLink("Excluir", "Delete", new { id = item.IdCao_Dono })
     </td>
 </tr>
     }

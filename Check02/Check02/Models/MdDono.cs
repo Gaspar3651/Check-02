@@ -16,8 +16,17 @@ namespace Check02.Models
         [Required]
         public String NmDono { get; set; }
 
+
+
         // ########## TELEFONE ##########
         [Required]
         public int Telefone { get; set; }
+
+
+        // ########## DATA DE NASCIMENTO ##########
+        [Display(Name ="Data de nascimento")]
+        [DataType(DataType.Date)]
+        [DisplayFormatAttribute(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public string Nascimento { get; set; }
     }
 }

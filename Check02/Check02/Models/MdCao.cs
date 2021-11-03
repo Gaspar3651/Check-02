@@ -12,18 +12,16 @@ namespace Check02.Models
         public int IdCao { get; set; }
 
         // ########## NOME DO CAO ##########
-        [Display(Name ="Nome do cão")]
+        [Display(Name = "Nome do cão")]
         [Required]
         public string NmCao { get; set; }
 
         // ########## ID RAÇA ##########
-        [Display(Name ="Raça")]
-        [Required]
+        [Display(Name = "Raça")]
         public int IdRaca { get; set; }
 
         // ########## NOME DA RAÇA ##########
         [Display(Name = "Raça do Cão")]
         public string NmRaca { get; set; }
-
     }
 }
