@@ -1,33 +1,57 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
+<style>
+    .col-md-4 {
+        border: 1px solid gray;
+        border-radius: 10px;
+        margin: 1% 8%;
+        box-shadow: 2px 2px 5px gray;
+    }
+    .btn {
+        border: 1px solid black;
+        border-radius: 5px;
+        color: white;
+        box-shadow: 2px 2px 5px black;
+    }
+    .btn:hover {
+        color: black;
+    }
+</style>
+
 <div class="jumbotron">
-    <h1>CHECKPOINT 02</h1>
+    <h1>Organização Canina</h1>
 </div>
 
 <div class="row">
     <!-- ########## DONOS ########## -->
+    
     <div class="col-md-4">
         <h2>Donos</h2>
-        <p><a class="btn btn-default" href="/Dono">LISTAR &raquo;</a></p>
+        <p>Para ver mais informações sobre os donos clique no botão abaixo.</p>
+        <p><a style="background-color: #7B68EE" class="btn btn-default" href="/Dono"><b>Donos</b> &raquo;</a></p>
     </div>
 
     <!-- ########## CÃES ########## -->
     <div class="col-md-4">
         <h2>Cães</h2>
-        <p><a class="btn btn-default" href="/Cao">LISTAR &raquo;</a></p>
-    </div>
-
-    <!-- ########## CÃES E DONOS ########## -->
-    <div class="col-md-4">
-        <h2>Cães e Donos</h2>
-        <p><a class="btn btn-default" href="/Cao_Dono">LISTAR &raquo;</a></p>
+        <p>Para ver mais informações sobre os cães clique no botão abaixo.</p>
+        <p><a style="background-color: #FF4500" class="btn btn-default" href="/Cao"><b>Cães</b> &raquo;</a></p>
     </div>
 
     <!-- ########## RAÇAS ########## -->
     <div class="col-md-4">
         <h2>Raças</h2>
-        <p><a class="btn btn-default" href="/Raca">LISTAR &raquo;</a></p>
+        <p>Para ver mais informações sobre as raças clique no botão abaixo.</p>
+        <p><a style="background-color: #FF1493" class="btn btn-default" href="/Raca"><b>Raças</b> &raquo;</a></p>
+    </div>
+
+
+    <!-- ########## CÃES E DONOS ########## -->
+    <div class="col-md-4">
+        <h2>Cães e Donos</h2>
+        <p>Para ver a relação entre os donos e seus respectivos cães clique no botão abaixo.</p>
+        <p><a style="background-color: #2E8B57 " class="btn btn-default" href="/Cao_Dono"><b>Relacionamento</b> &raquo;</a></p>
     </div>
 </div>

@@ -47,7 +47,7 @@ namespace Check02.Controllers
         // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdDono,NmDono,Telefone")] MdDono mdDono)
+        public ActionResult Create([Bind(Include = "IdDono,NmDono,Telefone,Nascimento")] MdDono mdDono)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Check02.Controllers
         // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDono,NmDono,Telefone")] MdDono mdDono)
+        public ActionResult Edit([Bind(Include = "IdDono,NmDono,Telefone,Nascimento")] MdDono mdDono)
         {
             if (ModelState.IsValid)
             {

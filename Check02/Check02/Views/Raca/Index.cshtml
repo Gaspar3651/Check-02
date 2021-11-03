@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Check02.Models.MdRaca>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Raças";
 }
 
-<h2>Index</h2>
+<h2>Raças</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar nova Raça", "Create")
 </p>
 <table class="table">
     <tr>
@@ -23,9 +23,9 @@
             @Html.DisplayFor(modelItem => item.NmRaca)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdRaca }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdRaca }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdRaca })
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdRaca }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.IdRaca }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.IdRaca })
         </td>
     </tr>
 }

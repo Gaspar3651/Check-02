@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<Check02.Models.MdCao>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cão";
 }
 
-<h2>Index</h2>
+<h2>Cão</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar novo Cão", "Create")
 </p>
-<table class="table">
+<table class="table"> 
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.NmCao)
@@ -17,23 +17,22 @@
         <th>
             @Html.DisplayNameFor(model => model.NmRaca)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NmCao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NmRaca)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdCao }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdCao }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdCao })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NmCao)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NmRaca)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.IdCao }) |
+        @Html.ActionLink("Detalhes", "Details", new { id = item.IdCao }) |
+        @Html.ActionLink("Excluir", "Delete", new { id = item.IdCao })
+    </td>
+</tr>
 }
 
 </table>

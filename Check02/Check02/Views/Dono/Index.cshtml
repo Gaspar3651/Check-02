@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Check02.Models.MdDono>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Donos";
 }
 
-<h2>Index</h2>
+<h2>Donos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar um dono", "Create")
 </p>
 <table class="table">
     <tr>
@@ -17,23 +17,29 @@
         <th>
             @Html.DisplayNameFor(model => model.Telefone)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nascimento)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NmDono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefone)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdDono }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdDono }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdDono })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NmDono)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Telefone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nascimento)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.IdDono }) |
+        @Html.ActionLink("Detalhes", "Details", new { id = item.IdDono }) |
+        @Html.ActionLink("Excluir", "Delete", new { id = item.IdDono })
+    </td>
+</tr>
 }
 
 </table>

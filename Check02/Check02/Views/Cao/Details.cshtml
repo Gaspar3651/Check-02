@@ -1,13 +1,13 @@
 ﻿@model Check02.Models.MdCao
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
-    <h4>MdCao</h4>
+    <h4>Cao</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IdRaca)
+            @Html.DisplayNameFor(model => model.NmRaca)
         </dt>
 
         <dd>
@@ -29,6 +29,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdCao }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdCao }) |
+    @Html.ActionLink("Voltar", "Index")
 </p>

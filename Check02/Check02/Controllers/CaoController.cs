@@ -14,6 +14,7 @@ namespace Check02.Controllers
     public class CaoController : Controller
     {
         private Context.Context db = new Context.Context();
+        private MdCao cao = new MdCao();
 
         // GET: Cao
         public ActionResult Index()
@@ -60,6 +61,7 @@ namespace Check02.Controllers
         {
             if (ModelState.IsValid)
             {
+              
                 db.ctCao.Add(mdCao);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,7 +90,7 @@ namespace Check02.Controllers
         // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdCao,NmCao,IdRaca")] MdCao mdCao)
+        public ActionResult Edit([Bind(Include = "IdCao,NmCao,IdRaca,NascimentoCao")] MdCao mdCao)
         {
             if (ModelState.IsValid)
             {
