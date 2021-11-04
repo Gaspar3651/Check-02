@@ -121,12 +121,21 @@ namespace Check02.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdDono,NmDono,Telefone,Nascimento")] MdDono mdDono)
         {
-            if (ModelState.IsValid)
+            bool verificationTel = ValidarTelefone(mdDono.Telefone.ToString());
+            if (!verificationTel)
             {
-                db.Entry(mdDono).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                MessageBox.Show("Telefone inválido");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(mdDono).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            
             return View(mdDono);
         }
 
