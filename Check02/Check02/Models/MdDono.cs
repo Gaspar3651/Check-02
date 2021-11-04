@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Check02.Models
 {
@@ -13,20 +14,20 @@ namespace Check02.Models
 
         // ########## NOME ##########
         [Display(Name ="Nome do Dono")]
-        [Required]
+        [Required(ErrorMessage ="O {0} é obrigatório")]
         public String NmDono { get; set; }
 
 
 
         // ########## TELEFONE ##########
-        [Required]
-        public int Telefone { get; set; }
+        [Required(ErrorMessage = "O {0} é obrigatório")]
+        public string Telefone { get; set; }
 
 
         // ########## DATA DE NASCIMENTO ##########
         [Display(Name ="Data de nascimento")]
         [DataType(DataType.Date)]
-        [DisplayFormatAttribute(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [Required(ErrorMessage = "A {0} é obrigatório")]
         public string Nascimento { get; set; }
     }
 }
