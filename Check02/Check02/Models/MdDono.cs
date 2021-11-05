@@ -18,7 +18,6 @@ namespace Check02.Models
         public String NmDono { get; set; }
 
 
-
         // ########## TELEFONE ##########
         [Required(ErrorMessage = "O {0} é obrigatório")]
         public string Telefone { get; set; }
@@ -29,5 +28,12 @@ namespace Check02.Models
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "A {0} é obrigatório")]
         public string Nascimento { get; set; }
+
+
+        // ########## CPF ##########
+        [Display(Name ="CPF")]
+        [Required(ErrorMessage = "O {0} é obrigatório")]
+        public string Cpf { get; set; }
     }
+
 }

@@ -38,20 +38,62 @@ namespace Check02.Controllers
             }
         }
 
-       /*public JsonResult Teste(string num)
+        public static bool ValidarCpf(string cpf)
         {
-            MdDono c = db.ctDonos.SingleOrDefault(s => s.Telefone == num);
-            bool retorno = false;
+            int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            string tempCpf;
+            string digito;
+            int soma;
+            int resto;
 
-            if (ValidarTelefone(num.ToString()))
-            {
-                return Json(true, JsonRequestBehavior.AllowGet);
-            }
+            cpf = cpf.Trim();
+            cpf = cpf.Replace(".", "").Replace("-", "");
+            
+            if (cpf.Length != 11)
+                return false;
+
+            // ########## VALIDAÇÃO DO PRIMEIRO DIGITO ##########
+            // 1º PASSO: Multiplica-se os 9 primeiros dígitos pela sequência decrescente de números de 10 à 2 e soma os resultados.
+            // 2º PASSO: Basta multiplicarmos esse resultado por 10 e dividirmos por 11.
+            // O resultado que nos interessa na verdade é o RESTO da divisão. Se ele for igual ao primeiro dígito verificador (primeiro dígito depois do '-'), a primeira parte da validação está correta.
+            // Se o resto da divisão for igual a 10, nós o consideramos como 0.
+
+            tempCpf = cpf.Substring(0, 9);
+            soma = 0;
+            for (int i = 0; i < 9; i++)
+                soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
+
+            resto = soma % 11;
+            if (resto < 2)
+                resto = 0;
             else
-            {
-                return Json(retorno, JsonRequestBehavior.AllowGet);
-            }
-        }*/
+                resto = 11 - resto;
+
+            digito = resto.ToString();
+
+
+            // ########## VALIDAÇÃO DO SEGUNDO DÍGITO ##########
+            // 1º PASSO: vamos considerar os 9 primeiros dígitos, mais o primeiro dígito verificador, e vamos multiplicar esses 10 números pela sequencia decrescente de 11 a 2
+            // 2º PASSO: Seguindo o mesmo processo da primeira verificação, multiplicamos por 10 e dividimos por 11
+            // O resultado que nos interessa na verdade é o RESTO da divisão.
+
+            tempCpf = tempCpf + digito;
+
+            soma = 0;
+            for (int i = 0; i < 10; i++)
+                soma += int.Parse(tempCpf[i].ToString()) * multiplicador2[i];
+
+            resto = soma % 11;
+            if (resto < 2)
+                resto = 0;
+            else
+                resto = 11 - resto;
+
+            digito = digito + resto.ToString();
+
+            return cpf.EndsWith(digito);
+        }
 
         // GET: Dono/Details/5
         public ActionResult Details(int? id)
@@ -80,14 +122,20 @@ namespace Check02.Controllers
         // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdDono,NmDono,Telefone,Nascimento")] MdDono mdDono)
+        public ActionResult Create([Bind(Include = "IdDono,NmDono,Telefone,Nascimento,Cpf")] MdDono mdDono)
         {
-            bool verificationTel = ValidarTelefone(mdDono.Telefone.ToString());
+            bool verificationTel = ValidarTelefone(mdDono.Telefone);
+            bool verificationCpf = ValidarCpf(mdDono.Cpf);
+
             if (!verificationTel)
             {
                 MessageBox.Show("Telefone inválido");
             }
-            else
+            else if (!verificationCpf)
+            {
+                MessageBox.Show("CPF inválido");
+            }
+            else if(verificationTel && verificationCpf)
             {
                 if (ModelState.IsValid)
                 {
@@ -119,14 +167,20 @@ namespace Check02.Controllers
         // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDono,NmDono,Telefone,Nascimento")] MdDono mdDono)
+        public ActionResult Edit([Bind(Include = "IdDono,NmDono,Telefone,Nascimento,Cpf")] MdDono mdDono)
         {
-            bool verificationTel = ValidarTelefone(mdDono.Telefone.ToString());
+            bool verificationTel = ValidarTelefone(mdDono.Telefone);
+            bool verificationCpf = ValidarCpf(mdDono.Cpf);
+
             if (!verificationTel)
             {
                 MessageBox.Show("Telefone inválido");
             }
-            else
+            else if (!verificationCpf)
+            {
+                MessageBox.Show("CPF inválido");
+            }
+            else if (verificationTel && verificationCpf)
             {
                 if (ModelState.IsValid)
                 {
