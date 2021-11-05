@@ -41,6 +41,15 @@ namespace Check02.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<MdCao> ListCao = db.ctCao.ToList();
+
+            foreach (MdCao item in ListCao)
+            {
+                var BaseRaca = db.ctRacas.Where(t => t.IdRaca == item.IdRaca).FirstOrDefault();
+                item.NmRaca = BaseRaca.NmRaca;
+            }
+
             return View(mdCao);
         }
 
@@ -82,6 +91,18 @@ namespace Check02.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<MdCao> ListCao = db.ctCao.ToList();
+
+            foreach (MdCao item in ListCao)
+            {
+                var BaseRaca = db.ctRacas.Where(t => t.IdRaca == item.IdRaca).FirstOrDefault();
+                item.NmRaca = BaseRaca.NmRaca;
+            }
+
+            List<MdRaca> ListRaca = db.ctRacas.ToList();
+            ViewBag.Raca = ListRaca;
+
             return View(mdCao);
         }
 
@@ -112,6 +133,14 @@ namespace Check02.Controllers
             if (mdCao == null)
             {
                 return HttpNotFound();
+            }
+
+            List<MdCao> ListCao = db.ctCao.ToList();
+
+            foreach (MdCao item in ListCao)
+            {
+                var BaseRaca = db.ctRacas.Where(t => t.IdRaca == item.IdRaca).FirstOrDefault();
+                item.NmRaca = BaseRaca.NmRaca;
             }
             return View(mdCao);
         }

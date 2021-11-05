@@ -75,10 +75,11 @@ namespace Check02.Controllers
         }
 
             // GET: Cao_Dono/Details/5
-            public ActionResult Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
+
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             MdCao_Dono mdCao_Dono = db.ctCao_Dono.Find(id);
@@ -86,6 +87,24 @@ namespace Check02.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<MdCao_Dono> Lista = db.ctCao_Dono.ToList();
+
+            foreach (MdCao_Dono item in Lista)
+            {
+                var BaseCao = db.ctCao.Where(t => t.IdCao == item.IdCao).FirstOrDefault();
+                var BaseDono = db.ctDonos.Where(t => t.IdDono == item.IdDono).FirstOrDefault();
+
+                item.IdRaca = BaseCao.IdRaca;
+
+                var BaseRaca = db.ctRacas.Where(t => t.IdRaca == item.IdRaca).FirstOrDefault();
+
+                item.NmDono = BaseDono.NmDono;
+                item.NmCao = BaseCao.NmCao;
+                item.NmRaca = BaseRaca.NmRaca;
+
+            }
+
             return View(mdCao_Dono);
         }
 
@@ -131,6 +150,29 @@ namespace Check02.Controllers
             {
                 return HttpNotFound();
             }
+            List<MdCao_Dono> Lista = db.ctCao_Dono.ToList();
+
+            foreach (MdCao_Dono item in Lista)
+            {
+                var BaseCao = db.ctCao.Where(t => t.IdCao == item.IdCao).FirstOrDefault();
+                var BaseDono = db.ctDonos.Where(t => t.IdDono == item.IdDono).FirstOrDefault();
+
+                item.IdRaca = BaseCao.IdRaca;
+
+                var BaseRaca = db.ctRacas.Where(t => t.IdRaca == item.IdRaca).FirstOrDefault();
+
+                item.NmDono = BaseDono.NmDono;
+                item.NmCao = BaseCao.NmCao;
+                item.NmRaca = BaseRaca.NmRaca;
+
+            }
+
+            List<MdDono> ListDono = db.ctDonos.ToList();
+            ViewBag.Donos = ListDono;
+
+            List<MdCao> ListCao = db.ctCao.ToList();
+            ViewBag.Cao = ListCao;
+
             return View(mdCao_Dono);
         }
 
@@ -139,7 +181,7 @@ namespace Check02.Controllers
         // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdCao_Dono,IdDono,IdCao")] MdCao_Dono mdCao_Dono)
+        public ActionResult Edit([Bind(Include = "IdCao_Dono,IdDono,IdCao,NmCao,NmDono,NmRaca")] MdCao_Dono mdCao_Dono)
         {
             if (ModelState.IsValid)
             {
@@ -162,6 +204,24 @@ namespace Check02.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<MdCao_Dono> Lista = db.ctCao_Dono.ToList();
+
+            foreach (MdCao_Dono item in Lista)
+            {
+                var BaseCao = db.ctCao.Where(t => t.IdCao == item.IdCao).FirstOrDefault();
+                var BaseDono = db.ctDonos.Where(t => t.IdDono == item.IdDono).FirstOrDefault();
+
+                item.IdRaca = BaseCao.IdRaca;
+
+                var BaseRaca = db.ctRacas.Where(t => t.IdRaca == item.IdRaca).FirstOrDefault();
+
+                item.NmDono = BaseDono.NmDono;
+                item.NmCao = BaseCao.NmCao;
+                item.NmRaca = BaseRaca.NmRaca;
+
+            }
+
             return View(mdCao_Dono);
         }
 

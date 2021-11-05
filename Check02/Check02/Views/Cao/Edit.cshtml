@@ -28,7 +28,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdRaca, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IdRaca, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("IdRaca", new SelectList(ViewBag.Raca, "IdRaca", "NmRaca"), "Selecione a Raça",
+            new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IdRaca, "", new { @class = "text-danger" })
             </div>
         </div>
