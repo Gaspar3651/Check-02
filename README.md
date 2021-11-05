@@ -1,2 +1,2 @@
 # Check-02
- Programação em .NET MVC 
+Repositório com o intuito de estudar e praticar Programação em DOR-NET MVC
