@@ -18,7 +18,7 @@ namespace Check02
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //Database.SetInitializer<Check02.Context.Context>(new DropCreateDatabaseIfModelChanges<Check02.Context.Context>());
+            Database.SetInitializer<Check02.Context.Context>(new DropCreateDatabaseIfModelChanges<Check02.Context.Context>());
         }
     }
 }

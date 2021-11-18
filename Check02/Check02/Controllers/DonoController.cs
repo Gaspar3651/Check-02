@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Windows;
 using Check02.Context;
@@ -226,6 +227,23 @@ namespace Check02.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        public void GetImagemSol()
+        {
+            WebImage wbImage = new WebImage("~/Views/Shared/imagens/sol.png");
+            wbImage.Resize(20, 20);
+            wbImage.FileName = "quati.jpg";
+            wbImage.Write();
+        }
+
+        public void GetImagemLua()
+        {
+            WebImage wbImage = new WebImage("~/Views/Shared/imagens/lua.png");
+            wbImage.Resize(20, 20);
+            wbImage.FileName = "quati.jpg";
+            wbImage.Write();
         }
     }
 }

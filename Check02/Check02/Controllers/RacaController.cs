@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Check02.Context;
 using Check02.Models;
@@ -123,6 +124,24 @@ namespace Check02.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+
+        public void GetImagemSol()
+        {
+            WebImage wbImage = new WebImage("~/Views/Shared/imagens/sol.png");
+            wbImage.Resize(20, 20);
+            wbImage.FileName = "quati.jpg";
+            wbImage.Write();
+        }
+
+        public void GetImagemLua()
+        {
+            WebImage wbImage = new WebImage("~/Views/Shared/imagens/lua.png");
+            wbImage.Resize(20, 20);
+            wbImage.FileName = "quati.jpg";
+            wbImage.Write();
         }
     }
 }
