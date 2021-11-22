@@ -176,6 +176,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RacaController.cs" />
+    <Compile Include="Controllers\ServicosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,6 +187,7 @@
     <Compile Include="Models\MdCao_Dono.cs" />
     <Compile Include="Models\MdDono.cs" />
     <Compile Include="Models\MdRaca.cs" />
+    <Compile Include="Models\MdServicos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -267,6 +269,11 @@
     <Content Include="Views\Raca\Details.cshtml" />
     <Content Include="Views\Raca\Edit.cshtml" />
     <Content Include="Views\Raca\Index.cshtml" />
+    <Content Include="Views\Servicos\Create.cshtml" />
+    <Content Include="Views\Servicos\Delete.cshtml" />
+    <Content Include="Views\Servicos\Details.cshtml" />
+    <Content Include="Views\Servicos\Edit.cshtml" />
+    <Content Include="Views\Servicos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
