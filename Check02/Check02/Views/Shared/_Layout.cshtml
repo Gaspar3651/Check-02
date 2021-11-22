@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@ViewBag.Title - Organização Canina</title>
+        <title>@ViewBag.Title - Pet Shop</title>
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
 
@@ -88,7 +88,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Html.ActionLink("Organização Canina", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Pet Shop", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -96,6 +96,7 @@
                         <li>@Html.ActionLink("Cães", "Index", "Cao")</li>
                         <li>@Html.ActionLink("Raças", "Index", "Raca")</li>
                         <li>@Html.ActionLink("Cães e Donos", "Index", "Cao_Dono")</li>
+                        <li>@Html.ActionLink("Produtos e Serviços", "Index", "Servicos")</li>
                     </ul>
                     <!-- @Html.Partial("_LoginPartial") -->
 
@@ -116,7 +117,7 @@
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - Organização Canina</p>
+                <p>&copy; @DateTime.Now.Year - Pet Shop</p>
             </footer>
         </div>
 
