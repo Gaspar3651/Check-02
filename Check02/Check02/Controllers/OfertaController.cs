@@ -5,22 +5,66 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Check02.Context;
 using Check02.Models;
-using System.Web.Helpers;
 
 namespace Check02.Controllers
 {
     public class OfertaController : Controller
     {
         private Context.Context db = new Context.Context();
+        private MdOferta oferta = new MdOferta();
 
         // GET: Oferta
         public ActionResult Index()
         {
+            // ########## LISTA GERAL DOS PRODUTOS ##########
+            List<MdServicos> ListaDosProdutos = db.ctServicos.Where(t => t.Tipo.Equals("Produto")).ToList();
+            ViewBag.Servico = ListaDosProdutos;
+
+
             return View(db.ctOferta.ToList());
         }
+
+
+
+
+
+        public ActionResult AddProduto(int IdProduto)
+        {
+            MdServicos Produtos = new MdServicos();
+            Produtos = db.ctServicos.Where(d => d.IdServico == IdProduto).FirstOrDefault();
+
+
+            oferta.ListaProdutos.Add(Produtos);
+
+
+            List<MdServicos> ListaDosProdutos = db.ctServicos.Where(t => t.Tipo.Equals("Produto")).ToList();
+            ViewBag.ProdutosSelecionados = ListaDosProdutos;
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        public ActionResult RemoverProduto(int IdProduto)
+        {
+            return RedirectToAction("Index");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Oferta/Details/5
         public ActionResult Details(int? id)
@@ -125,6 +169,7 @@ namespace Check02.Controllers
             }
             base.Dispose(disposing);
         }
+
 
 
         public void GetImagemSol()
