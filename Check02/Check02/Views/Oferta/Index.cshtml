@@ -5,22 +5,21 @@
 }
 
 <h2>Index</h2>
+<br />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h3> Produtos </h3>
 
 
 <table class="table">
     <tr>
         <th>
-            Descrição 
+            Descrição
         </th>
         <th>
             Preço
         </th>
         <th>
-            Tipo
+
         </th>
     </tr>
 
@@ -35,11 +34,44 @@
     </td>
 
     <td>
-        @item.Tipo
-    </td>
-
-    <td>
         @Html.ActionLink("Adicionar", "AddProduto", new { IdProduto = item.IdServico }) 
     </td>
 </tr>
 }
+
+
+
+
+<table class="table">
+    <h3> Produtos no Carrinho </h3>
+    <tr>
+        <th>
+            Descrição
+        </th>
+        <th>
+            Preço
+        </th>
+
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in @ViewBag.ProdutosSelecionados)
+    {
+        <tr>
+            <td>
+                @item.DescricaoProduto
+            </td>
+
+            <td>
+                @item.Preco
+            </td>
+
+            <td>
+                @Html.ActionLink("Remover", "RemoverProduto", new { IdProduto = item.IdServico })
+            </td>
+        </tr>
+    }
+
+</table>
