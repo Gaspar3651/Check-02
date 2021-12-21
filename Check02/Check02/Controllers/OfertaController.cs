@@ -16,6 +16,7 @@ namespace Check02.Controllers
     {
         private Context.Context db = new Context.Context();
         private MdOferta oferta = new MdOferta();
+        public static List<MdServicos> ProdutoSelecionado = new List<MdServicos>();
 
         // GET: Oferta
         public ActionResult Index()
@@ -25,11 +26,11 @@ namespace Check02.Controllers
             ViewBag.Servico = ListaDosProdutos;
 
 
+            // ########## LISTA DOS PRODUTOS DO CARRINHO ##########
+            ViewBag.ProdutosSelecionados = ProdutoSelecionado.OrderBy(d => d.DescricaoProduto).ToList(); ;
+
             return View(db.ctOferta.ToList());
         }
-
-
-
 
 
         public ActionResult AddProduto(int IdProduto)
@@ -37,12 +38,7 @@ namespace Check02.Controllers
             MdServicos Produtos = new MdServicos();
             Produtos = db.ctServicos.Where(d => d.IdServico == IdProduto).FirstOrDefault();
 
-
-            oferta.ListaProdutos.Add(Produtos);
-
-
-            List<MdServicos> ListaDosProdutos = db.ctServicos.Where(t => t.Tipo.Equals("Produto")).ToList();
-            ViewBag.ProdutosSelecionados = ListaDosProdutos;
+            ProdutoSelecionado.Add(Produtos);
 
             return RedirectToAction("Index");
         }
@@ -51,6 +47,18 @@ namespace Check02.Controllers
 
         public ActionResult RemoverProduto(int IdProduto)
         {
+
+            foreach (MdServicos item in ProdutoSelecionado)
+            {
+                if (item.IdServico == IdProduto)
+                {
+                    ProdutoSelecionado.Remove(item);
+                    break;
+                }
+            }
+
+            
+
             return RedirectToAction("Index");
         }
 
