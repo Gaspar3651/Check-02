@@ -23,5 +23,8 @@ namespace Check02.Models
         // ########## NOME DA RAÇA ##########
         [Display(Name = "Raça do Cão")]
         public string NmRaca { get; set; }
+
+
+        public string NmRacasfa { get; set; }
     }
 }

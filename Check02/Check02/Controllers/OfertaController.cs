@@ -16,11 +16,22 @@ namespace Check02.Controllers
     {
         private Context.Context db = new Context.Context();
         private MdOferta oferta = new MdOferta();
+
         public static List<MdServicos> ProdutoSelecionado = new List<MdServicos>();
 
+        static decimal ValorTotal;
+        static int IdDono;
+
         // GET: Oferta
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            // ########## INFORMAÇÕES DO CLIENTE ##########
+            List<MdDono> InformacaoCliente = db.ctDonos.ToList();
+            InformacaoCliente = InformacaoCliente.Where(t => t.IdDono == id).ToList();
+            ViewBag.Geral = InformacaoCliente;
+            IdDono = (int)id;
+
+
             // ########## LISTA GERAL DOS PRODUTOS ##########
             List<MdServicos> ListaDosProdutos = db.ctServicos.Where(t => t.Tipo.Equals("Produto")).ToList();
             ViewBag.Servico = ListaDosProdutos;
@@ -29,10 +40,15 @@ namespace Check02.Controllers
             // ########## LISTA DOS PRODUTOS DO CARRINHO ##########
             ViewBag.ProdutosSelecionados = ProdutoSelecionado.OrderBy(d => d.DescricaoProduto).ToList(); ;
 
+            // ########## VALOR TOTAL ##########
+            ViewBag.ValorTotal = ValorTotal;
+
             return View(db.ctOferta.ToList());
         }
 
 
+
+        
         public ActionResult AddProduto(int IdProduto)
         {
             MdServicos Produtos = new MdServicos();
@@ -40,7 +56,12 @@ namespace Check02.Controllers
 
             ProdutoSelecionado.Add(Produtos);
 
-            return RedirectToAction("Index");
+
+
+            // ########## VALOR TOTAL ##########
+            ValorTotal += Produtos.Preco;
+
+            return RedirectToAction("Index/" + IdDono);
         }
 
 
@@ -53,13 +74,15 @@ namespace Check02.Controllers
                 if (item.IdServico == IdProduto)
                 {
                     ProdutoSelecionado.Remove(item);
+
+
+                    // ########## VALOR TOTAL ##########
+                    ValorTotal -= item.Preco;
                     break;
                 }
             }
 
-            
-
-            return RedirectToAction("Index");
+            return RedirectToAction("Index/" + IdDono);
         }
 
 
