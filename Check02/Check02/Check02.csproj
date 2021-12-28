@@ -294,10 +294,6 @@
     <Content Include="Views\Servicos\Details.cshtml" />
     <Content Include="Views\Servicos\Edit.cshtml" />
     <Content Include="Views\Servicos\Index.cshtml" />
-    <Content Include="Views\Oferta\Create.cshtml" />
-    <Content Include="Views\Oferta\Delete.cshtml" />
-    <Content Include="Views\Oferta\Details.cshtml" />
-    <Content Include="Views\Oferta\Edit.cshtml" />
     <Content Include="Views\Oferta\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
