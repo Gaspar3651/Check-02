@@ -7,7 +7,7 @@
 <h2>Cães</h2>
 
 <p>
-    @Html.ActionLink("Cadastrar novo Cão", "Create")
+    <input type="button" class="btn btn-default" value="Cadastrar Cão" onclick="location.href='@Url.Action("Create", "Cao")'" />
 </p>
 <table class="table"> 
     <tr>
@@ -28,9 +28,9 @@
         @Html.DisplayFor(modelItem => item.NmRaca)
     </td>
     <td>
-        @Html.ActionLink("Editar", "Edit", new { id = item.IdCao }) |
-        @Html.ActionLink("Detalhes", "Details", new { id = item.IdCao }) |
-        @Html.ActionLink("Excluir", "Delete", new { id = item.IdCao })
+        <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Cao", new { id = item.IdCao })'" />
+        <input type="button" class="btn btn-default" value="Detalhes" onclick="location.href='@Url.Action("Details", "Cao", new { id = item.IdCao })'" />
+        <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Cao", new { id = item.IdCao })'" />
     </td>
 </tr>
 }
