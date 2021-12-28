@@ -7,18 +7,9 @@
 <h2>Cães e Donos</h2>
 
 <p>
-    @Html.ActionLink("Relacionar cães aos seus donos", "Create")
+    <input type="button" class="btn btn-default" value="Relacionar cães aos seus donos" onclick="location.href='@Url.Action("Create", "Cao_Dono")'" />
 </p>
 
-@*<div class="form-group">
-    @Html.LabelFor(model => model.NmDono, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-
-        @Html.DropDownList("IdDono", new SelectList(ViewBag.Donos, "IdDono", "NmDono"), "Selecione o Dono",
-       new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.NmDono, "", new { @class = "text-danger" })
-    </div>
-</div>*@
 
 <div>
     @using (Html.BeginForm())
@@ -55,9 +46,9 @@
         @Html.DisplayFor(modelItem => item.NmRaca)
     </td>
     <td>
-        @Html.ActionLink("Editar", "Edit", new { id = item.IdCao_Dono }) |
-        @Html.ActionLink("Detalhes", "Details", new { id = item.IdCao_Dono }) |
-        @Html.ActionLink("Excluir", "Delete", new { id = item.IdCao_Dono })
+        <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Cao_Dono", new { id = item.IdCao_Dono })'" />
+        <input type="button" class="btn btn-default" value="Detalhes" onclick="location.href='@Url.Action("Details", "Cao_Dono", new { id = item.IdCao_Dono })'" />
+        <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Cao_Dono", new { id = item.IdCao_Dono })'" />
     </td>
 </tr>
     }

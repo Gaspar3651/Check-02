@@ -21,6 +21,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.IdRaca }) |
-    @Html.ActionLink("Voltar", "Index")
+    <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Raca", new { id = Model.IdRaca })'" />
+    <input type="button" class="btn btn-default" value="Voltar" onclick="location.href='@Url.Action("Index", "Raca")'" />
 </p>
