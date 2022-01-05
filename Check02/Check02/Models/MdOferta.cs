@@ -9,14 +9,12 @@ namespace Check02.Models
     public class MdOferta
     {
         [Key]
-        public int IdOferta { get; set; }
+        public String IdOferta { get; set; }
 
         public int IdCliente { get; set; }
 
-        [Display(Name ="Oferta Final")]
         public decimal ValorOfertaFinal { get; set; }
 
-        public virtual List<MdServicos> ListaProdutos { get; set; }
-
+        public virtual List<MdServicos> Carrinho { get; set; }
     }
 }

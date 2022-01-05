@@ -214,8 +214,12 @@ namespace Check02.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            MdOferta mdOferta = db.ctOferta.Find(id.ToString());
+            db.ctOferta.Remove(mdOferta);
+
             MdDono mdDono = db.ctDonos.Find(id);
             db.ctDonos.Remove(mdDono);
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }

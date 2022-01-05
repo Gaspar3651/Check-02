@@ -17,14 +17,33 @@ namespace Check02.Controllers
         private Context.Context db = new Context.Context();
         private MdOferta oferta = new MdOferta();
 
-        public static List<MdServicos> ProdutoSelecionado = new List<MdServicos>();
+        public static List<MdServicos> Carrinho = new List<MdServicos>();
 
-        static decimal ValorTotal;
+        // ########## LISTA PRINCIPAL ##########
+        public static List<MdOferta> ListaOferta = new List<MdOferta>();
+        //static List<MdOferta> ListaOferta { get; set; }
+
+        static decimal ValorTotal = 0;
         static int IdDono;
 
         // GET: Oferta
-        public ActionResult Index(int? id)
+        public ActionResult Index(int id)
         {
+            List<MdOferta> teste = db.ctOferta.ToList();
+
+
+            if (db.ctDonos.Find(id) == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (db.ctOferta.Find(id.ToString()) == null && db.ctDonos.Find(id) != null)
+            {
+                IdDono = (int)id;
+                return RedirectToAction("Create/" + id);
+            }
+
+
             // ########## INFORMAÇÕES DO CLIENTE ##########
             List<MdDono> InformacaoCliente = db.ctDonos.ToList();
             InformacaoCliente = InformacaoCliente.Where(t => t.IdDono == id).ToList();
@@ -37,11 +56,25 @@ namespace Check02.Controllers
             ViewBag.Servico = ListaDosProdutos;
 
 
-            // ########## LISTA DOS PRODUTOS DO CARRINHO ##########
-            ViewBag.ProdutosSelecionados = ProdutoSelecionado.OrderBy(d => d.DescricaoProduto).ToList(); ;
+            // ########## LISTA DO CARRINHO ##########
+/*
+            if(ListaOferta.Count == 0)
+            {
+                ListaOferta = db.ctOferta.ToList();
+            }
+*/
+            if (ListaOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault() == null)
+            {
+                MdOferta add = new MdOferta();
+                add = db.ctOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault();
+
+                ListaOferta.Add(add);
+            }
+
+            ViewBag.ProdutosSelecionados = ListaOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault().Carrinho;
 
             // ########## VALOR TOTAL ##########
-            ViewBag.ValorTotal = ValorTotal;
+            ViewBag.ValorTotal = ListaOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault().ValorOfertaFinal;
 
             return View(db.ctOferta.ToList());
         }
@@ -51,15 +84,17 @@ namespace Check02.Controllers
         
         public ActionResult AddProduto(int IdProduto)
         {
+            /*if (ListaOferta.Count == 0)
+            {
+                ListaOferta = db.ctOferta.ToList();
+            }*/
+
             MdServicos Produtos = new MdServicos();
             Produtos = db.ctServicos.Where(d => d.IdServico == IdProduto).FirstOrDefault();
+            ValorTotal = Produtos.Preco;
 
-            ProdutoSelecionado.Add(Produtos);
-
-
-
-            // ########## VALOR TOTAL ##########
-            ValorTotal += Produtos.Preco;
+            ListaOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault().Carrinho.Add(Produtos);
+            ListaOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault().ValorOfertaFinal += ValorTotal;
 
             return RedirectToAction("Index/" + IdDono);
         }
@@ -69,15 +104,14 @@ namespace Check02.Controllers
         public ActionResult RemoverProduto(int IdProduto)
         {
 
-            foreach (MdServicos item in ProdutoSelecionado)
+            foreach (MdServicos item in ListaOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault().Carrinho)
             {
                 if (item.IdServico == IdProduto)
                 {
-                    ProdutoSelecionado.Remove(item);
+                    ValorTotal = item.Preco;
 
-
-                    // ########## VALOR TOTAL ##########
-                    ValorTotal -= item.Preco;
+                    ListaOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault().Carrinho.Remove(item);
+                    ListaOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault().ValorOfertaFinal -= ValorTotal;
                     break;
                 }
             }
@@ -98,7 +132,7 @@ namespace Check02.Controllers
 
 
         // GET: Oferta/Details/5
-        public ActionResult Details(int? id)
+        /*public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -110,12 +144,19 @@ namespace Check02.Controllers
                 return HttpNotFound();
             }
             return View(mdOferta);
-        }
+        }*/
+
 
         // GET: Oferta/Create
         public ActionResult Create()
         {
-            return View();
+            MdOferta mdOferta = new MdOferta();
+
+            mdOferta.IdOferta = IdDono.ToString();
+            mdOferta.IdCliente = IdDono;
+            mdOferta.ValorOfertaFinal = 0;
+
+            return View(mdOferta);
         }
 
         // POST: Oferta/Create
@@ -127,9 +168,13 @@ namespace Check02.Controllers
         {
             if (ModelState.IsValid)
             {
+                mdOferta.IdOferta = IdDono.ToString();
+                mdOferta.IdCliente = IdDono;
+                mdOferta.ValorOfertaFinal = 0;
+
                 db.ctOferta.Add(mdOferta);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index/" + IdDono);
             }
 
             return View(mdOferta);
@@ -189,7 +234,7 @@ namespace Check02.Controllers
             MdOferta mdOferta = db.ctOferta.Find(id);
             db.ctOferta.Remove(mdOferta);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index/" + IdDono);
         }
 
         protected override void Dispose(bool disposing)
