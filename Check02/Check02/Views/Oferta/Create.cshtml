@@ -40,26 +40,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" id="btn-create"/>
+                <input type="submit" value="Create" class="btn btn-default"/>
             </div>
         </div>
     </div>
 }
-
-<script>
-    function clicar(obj, evt) {
-        var fireOnThis = obj;
-
-        if (document.createEvent) {
-            var evObj = document.createEvent('MouseEvents');
-            evObj.initEvent(evt, true, false);
-            fireOnThis.dispatchEvent(evObj);
-        }
-        else if (document.createEventObject) {
-            var evObj = document.createEventObject();
-            fireOnThis.dispatchEvent('on' + evt, evObj);
-        }
-    }
-
-    clicar(document.getElementById('btn-create'), 'click');
-</script>

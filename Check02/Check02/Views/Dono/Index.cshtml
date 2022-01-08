@@ -23,6 +23,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Cpf)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Credito)
+        </th>
+        <th>
+
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -38,6 +44,9 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Cpf)
+    </td>
+    <td>
+       R$ @Html.DisplayFor(modelItem => item.Credito)
     </td>
     <td>
         <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Dono", new { id = item.IdDono })'" />
