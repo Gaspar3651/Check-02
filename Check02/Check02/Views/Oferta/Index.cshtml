@@ -21,7 +21,7 @@
         box-shadow: -6px -6px 3px gray;
     }
 
-    .valor div {
+    .vid {
         display: flex;
         padding: 20px 50px;
         border: 2px solid gray;
@@ -31,6 +31,11 @@
 
     .items{
         display: flex;
+    }
+
+
+    .validar{
+        align-items: center;
     }
 </style>
 
@@ -52,102 +57,104 @@
 
         <div class="items">
             <h4> <strong> Data de Nascimento: </strong> </h4>
-            <h4> @item.Nascimento </h4>
+            <h4> @Convert.ToDateTime(@item.Nascimento).ToString("dd/MM/yyyy")  </h4>
         </div>
 
         <div class="items">
             <h4> <strong> CPF: </strong> </h4>
             <h4> @item.Cpf </h4>
         </div>
+
+        <div class="items">
+            <h4> <strong> Crédito: </strong> </h4>
+            <h4>R$ @item.Credito </h4>
+        </div>
     }
 
 </div>
 
+<h3> Produtos </h3>
+
+
 <table class="table">
+    <tr>
+        <th>
+            Descrição
+        </th>
+        <th>
+            Preço
+        </th>
+        <th>
 
+        </th>
+    </tr>
 
+    @foreach (var item in @ViewBag.Servico)
+    {
+        <tr>
+            <td>
+                @item.DescricaoProduto
+            </td>
 
+            <td>
+                @item.Preco
+            </td>
+
+            <td>
+                <input type="button" class="btn btn-default" value="Adicionar" onclick="location.href='@Url.Action("AddProduto", "Oferta", new {IdProduto = item.IdServico })'" />
+            </td>
+        </tr>
+    }
 </table>
 
 
-    <h3> Produtos </h3>
+<div class="valor">
+    <div class="vid">
+        <h2>Valor Total</h2>
+        <hr />
+        <h3>R$: @ViewBag.ValorTotal</h3>
+    </div> 
+</div>
+
+<div class="validar">
+    <input type="button" class="btn btn-default" value="Finalizar compra" onclick="location.href='@Url.Action("ValidarCompra", "Oferta")'" />
+</div>
 
 
-    <table class="table">
+
+<table class="table">
+    <h3> Produtos no Carrinho </h3>
+
+    <tr>
+        <th>
+            Descrição
+        </th>
+        <th>
+            Preço
+        </th>
+
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in @ViewBag.ProdutosSelecionados)
+    {
         <tr>
-            <th>
-                Descrição
-            </th>
-            <th>
-                Preço
-            </th>
-            <th>
+            <td>
+                @item.DescricaoProduto
+            </td>
 
-            </th>
+            <td>
+                @item.Preco
+            </td>
+
+            <td>
+                <input type="button" class="btn btn-default" value="Remover" onclick="location.href='@Url.Action("RemoverProduto", "Oferta", new {IdProduto = item.IdServico })'" />
+            </td>
         </tr>
+    }
 
-        @foreach (var item in @ViewBag.Servico)
-        {
-            <tr>
-                <td>
-                    @item.DescricaoProduto
-                </td>
-
-                <td>
-                    @item.Preco
-                </td>
-
-                <td>
-                    <input type="button" class="btn btn-default" value="Adicionar" onclick="location.href='@Url.Action("AddProduto", "Oferta", new {IdProduto = item.IdServico })'" />
-                </td>
-            </tr>
-        }
-    </table>
-
-
-    <div class="valor">
-        <div>
-            <h2>Valor Total</h2>
-            <hr />
-            <h3>R$: @ViewBag.ValorTotal</h3>
-        </div>
-    </div>
-
-
-
-    <table class="table">
-        <h3> Produtos no Carrinho </h3>
-
-        <tr>
-            <th>
-                Descrição
-            </th>
-            <th>
-                Preço
-            </th>
-
-            <th>
-
-            </th>
-        </tr>
-
-        @foreach (var item in @ViewBag.ProdutosSelecionados)
-        {
-            <tr>
-                <td>
-                    @item.DescricaoProduto
-                </td>
-
-                <td>
-                    @item.Preco
-                </td>
-
-                <td>
-                    <input type="button" class="btn btn-default" value="Remover" onclick="location.href='@Url.Action("RemoverProduto", "Oferta", new {IdProduto = item.IdServico })'" />
-                </td>
-            </tr>
-        }
-
-    </table>
+</table>
 
 
