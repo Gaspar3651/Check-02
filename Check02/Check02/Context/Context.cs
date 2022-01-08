@@ -17,6 +17,8 @@ namespace Check02.Context
 
         public DbSet<MdRaca> ctRacas { get; set; }
 
-        public System.Data.Entity.DbSet<Check02.Models.MdServicos> ctServicos { get; set; }
+        public DbSet<MdServicos> ctServicos { get; set; }
+
+        public DbSet<MdOferta> ctOferta{ get; set; }
     }
 }

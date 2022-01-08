@@ -34,6 +34,12 @@ namespace Check02.Models
         [Display(Name ="CPF")]
         [Required(ErrorMessage = "O {0} é obrigatório")]
         public string Cpf { get; set; }
+
+
+        // ########## CREDITO ##########
+        [Display(Name ="Crédito")]
+        [Required(ErrorMessage = "O {0} é obrigatório")]
+        public decimal Credito { get; set; }
     }
 
 }

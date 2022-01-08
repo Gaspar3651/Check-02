@@ -42,14 +42,22 @@
             @Html.DisplayFor(model => model.Cpf)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Credito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Credito)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Excluir" class="btn btn-default" /> |
-            @Html.ActionLink("Voltar", "Index")
+            <input type="submit" value="Excluir" class="btn btn-default" /> 
+            <input type="button" class="btn btn-default" value="Voltar" onclick="location.href='@Url.Action("Index", "Dono")'" />
         </div>
     }
 </div>

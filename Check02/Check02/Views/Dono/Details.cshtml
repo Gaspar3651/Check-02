@@ -42,9 +42,18 @@
             @Html.DisplayFor(model => model.Cpf)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Credito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Credito)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.IdDono }) |
-    @Html.ActionLink("Voltar", "Index")
+    <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Dono", new { id = Model.IdDono })'" />
+
+    <input type="button" class="btn btn-default" value="Voltar" onclick="location.href='@Url.Action("Index", "Dono")'" />
 </p>

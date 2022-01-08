@@ -63,12 +63,14 @@
             --body-bg: #fafafa;
             --body-color: #555;
             --link-color: #222;
+            --btn-color: #DCDCDC;
         }
 
         .dark-mode:root {
             --body-bg: #212529;
             --body-color: #899095;
             --link-color: #dee2e6;
+            --btn-color: #A9A9A9;
         }
 
         body {
@@ -77,6 +79,8 @@
             transition: 0.5s all;
         }
 
+
+
         #idioma{
             display: block;
             float: right;
@@ -84,10 +88,31 @@
             left: 250px;
         }
 
-        . #idioma {
-            float: left;
-            left: 0px
+        /* ########## GERAL ########## */
+        .btnn {
+            border-radius: 5px;
+            border: 1px solid silver;
+            color: black;
+            background-color: silver;
+            box-shadow: 2px 2px 5px dimgray;
+            padding: 7px;
+            text-decoration: none;
+            transition: 0.3s all;
         }
+
+        .btnn:hover {
+            color: black;
+            padding: 7px 20px;
+            border: 1px solid black;
+        }
+
+
+        .btn {
+            margin-top: -8px;
+            background-color: var(--btn-color);
+            border-color: gray;
+        }
+
     </style>
 
 

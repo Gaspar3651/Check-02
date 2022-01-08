@@ -7,7 +7,8 @@
 <h2>Produtos e Serviços</h2>
 
 <p>
-    @Html.ActionLink("Cadastrar", "Create")
+    <input type="button" class="btn btn-default" value="Cadastrar" onclick="location.href='@Url.Action("Create", "Servicos")'" />
+
 </p>
 <table class="table">
     <tr>
@@ -35,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.Tipo)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.IdServico }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.IdServico }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.IdServico })
+            <input type="button" class="btn btn-default" value="Editar" onclick="location.href='@Url.Action("Edit", "Servicos", new { id = item.IdServico })'" />
+            <input type="button" class="btn btn-default" value="Detalhes" onclick="location.href='@Url.Action("Details", "Servicos", new { id = item.IdServico })'" />
+            <input type="button" class="btn btn-default" value="Excluir" onclick="location.href='@Url.Action("Delete", "Servicos", new { id = item.IdServico })'" />
         </td>
     </tr>
 }

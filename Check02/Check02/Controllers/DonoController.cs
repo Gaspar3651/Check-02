@@ -123,7 +123,7 @@ namespace Check02.Controllers
         // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdDono,NmDono,Telefone,Nascimento,Cpf")] MdDono mdDono)
+        public ActionResult Create([Bind(Include = "IdDono,NmDono,Telefone,Nascimento,Cpf,Credito")] MdDono mdDono)
         {
             bool verificationTel = ValidarTelefone(mdDono.Telefone);
             bool verificationCpf = ValidarCpf(mdDono.Cpf);
@@ -168,7 +168,7 @@ namespace Check02.Controllers
         // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDono,NmDono,Telefone,Nascimento,Cpf")] MdDono mdDono)
+        public ActionResult Edit([Bind(Include = "IdDono,NmDono,Telefone,Nascimento,Cpf,Credito")] MdDono mdDono)
         {
             bool verificationTel = ValidarTelefone(mdDono.Telefone);
             bool verificationCpf = ValidarCpf(mdDono.Cpf);
@@ -214,8 +214,12 @@ namespace Check02.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            MdOferta mdOferta = db.ctOferta.Find(id.ToString());
+            db.ctOferta.Remove(mdOferta);
+
             MdDono mdDono = db.ctDonos.Find(id);
             db.ctDonos.Remove(mdDono);
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
