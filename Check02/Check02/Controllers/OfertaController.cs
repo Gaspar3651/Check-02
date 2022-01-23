@@ -72,7 +72,7 @@ namespace Check02.Controllers
                 ListaOferta.Add(add);
             }
 
-            ViewBag.ProdutosSelecionados = ListaOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault().Carrinho;
+            ViewBag.ProdutosSelecionados = ListaOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault().Carrinho.OrderBy(t => t.DescricaoProduto);
 
             // ########## VALOR TOTAL ##########
             ViewBag.ValorTotal = ListaOferta.Where(t => t.IdCliente == IdDono).FirstOrDefault().ValorOfertaFinal;
@@ -94,7 +94,6 @@ namespace Check02.Controllers
 
             return RedirectToAction("Index/" + IdDono);
         }
-
 
 
         public ActionResult RemoverProduto(int IdProduto)
